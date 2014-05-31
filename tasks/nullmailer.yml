@@ -1,0 +1,51 @@
+---
+# tasks file for nullmailer
+#
+- name:     prepare config dir
+  action:
+    module: file
+    dest:   /etc/nullmailer
+    state:  directory
+    mode:   755
+    owner:  root
+    group:  root
+
+- name:     configure generic mail settings
+  action:
+    module: template
+    src:    '{{ item + ".j2" }}'
+    dest:   /etc/mailname
+    mode:   644
+    owner:  root
+    group:  root
+  with_items:
+    - mailname
+  notify:   restart_nullmailer
+
+- name:     configure nullmailer
+  action:
+    module: template
+    src:    '{{ item + ".j2" }}'
+    dest:   /etc/nullmailer/{{ item }}
+    mode:   644
+    owner:  root
+    group:  root
+  with_items:
+    - adminaddr
+    - defaultdomain
+    - defaulthost
+    - helohost
+    - idhost
+    - me
+    - pausetime
+    - remotes
+    - sendtimout
+
+  notify:   restart_nullmailer
+
+- name: install
+  action:
+    module: apt
+    pkg:    nullmailer
+    state:  latest
+

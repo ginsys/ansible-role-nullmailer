@@ -1,0 +1,63 @@
+---
+## defaults file for nullmailer
+
+#
+## adminaddr and remotes are the variables that should at least be set
+## to have some functional nullmailer
+#
+
+# If this file is not empty, all recipients to users at either "localhost" (the
+# literal string) or the canonical host name (from /etc/mailname) are remapped
+# to this address. This is provided to allow local daemons to be able to send
+# email to "somebody@localhost" and have it go somewhere sensible instead of
+# being bounced by your relay host.
+nullmailer_adminaddr:       '' # empy string yields empty file
+
+# This  file contains a list of remote servers to which to send each message.
+# Each line of this file contains a remote host name or address followed by an
+# optional protocol string, separated by white space. The protocol name defaults
+# to smtp, and may be followed by command-line arguments for that module.
+nullmailer_remotes:         []
+
+#
+## after this, defaults should be ok for most setups
+#
+
+# according to nullmailer docs, me should be equal to hostname
+# but IMHO this must be fully qualified
+nullmailer_me:              '{{ ansible_fqdn }}'
+
+# The content of this file is appended to any host name that does not contain
+# a period (except localhost), including defaulthost and idhost.  Defaults to
+# the value of the /etc/mailname system file, if it exists, otherwise the
+# literal name defaultdomain.
+nullmailer_defaultdomain:   '{{ ansible_domain }}'
+
+# The content of this file is appended to any address that is missing a host
+# name. Defaults to the value of the /etc/mailname system file, if it exists,
+# otherwise the literal name defaulthost.
+nullmailer_defaulthost:     '{{ ansible_fqdn }}'
+
+# Sets the environment variable $HELOHOST which is used by the SMTP protocol
+# module to set the parameter given to the HELO command.
+nullmailer_helohost:        '{{ nullmailer_me }}'
+
+# The content of this file is used when building the message-id string for the
+# message. Defaults to the canonicalized value of defaulthost.
+nullmailer_idhost:          '{{ nullmailer_defaulthost }}'
+
+# The number of seconds to pause between successive queue runs when there are
+# messages in the queue. If this is set to 0, nullmailer-send will exit
+# immediately  after going through the queue once (one-shot mode).
+nullmailer_pausetime:       60
+
+# The number of seconds to wait for a remote module listed above to complete
+# sending a message before killing it and trying again. If this is set to 0,
+# nullmailer-send will wait forever for messages to complete sending.
+nullmailer_sendtimout:      3600
+
+
+# /etc/mailname: The fully-qualifiled host name of the computer running
+# nullmailer. Defaults to the literal name me.
+nullmailer_mailname:        '{{ nullmailer_me }}'
+

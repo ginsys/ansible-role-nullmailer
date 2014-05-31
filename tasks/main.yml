@@ -1,0 +1,3 @@
+---
+- include: nullmailer.yml
+  when: nullmailer_remotes is defined and nullmailer_adminaddr is defined
