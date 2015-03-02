@@ -48,7 +48,7 @@ to smtp, and may be followed by command-line arguments for that module.
 * nullmailer_helohost:          nullmailer_me
 * nullmailer_idhost:            nullmailer_defaulthost
 * nullmailer_pausetime:         60
-* nullmailer_sendtimout:        3600
+* nullmailer_sendtimeout:       3600
 * nullmailer_mailname:          nullmailer_me
 
 

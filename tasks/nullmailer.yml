@@ -39,7 +39,7 @@
     - me
     - pausetime
     - remotes
-    - sendtimout
+    - sendtimeout
 
   notify:   restart_nullmailer
 
