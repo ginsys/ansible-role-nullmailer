@@ -54,7 +54,7 @@ nullmailer_pausetime:       60
 # The number of seconds to wait for a remote module listed above to complete
 # sending a message before killing it and trying again. If this is set to 0,
 # nullmailer-send will wait forever for messages to complete sending.
-nullmailer_sendtimout:      3600
+nullmailer_sendtimeout:     3600
 
 
 # /etc/mailname: The fully-qualifiled host name of the computer running
