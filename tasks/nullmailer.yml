@@ -6,7 +6,7 @@
     module: file
     dest:   /etc/nullmailer
     state:  directory
-    mode:   755
+    mode:   0755
     owner:  root
     group:  root
 
@@ -15,7 +15,7 @@
     module: template
     src:    '{{ item + ".j2" }}'
     dest:   /etc/mailname
-    mode:   644
+    mode:   0644
     owner:  root
     group:  root
   with_items:
@@ -27,7 +27,7 @@
     module: template
     src:    '{{ item + ".j2" }}'
     dest:   /etc/nullmailer/{{ item }}
-    mode:   644
+    mode:   0644
     owner:  root
     group:  root
   with_items:
