@@ -29,7 +29,7 @@
     dest:   /etc/nullmailer/{{ item.name }}
     mode:   '{{ item.mode |default(0644) }}'
     owner:  '{{ item.owner |default("root") }}'
-    group:  '{{ item.group |default("mail") }}'
+    group:  '{{ item.group |default("root") }}'
   with_items:
     - file: adminaddr
     - file: defaultdomain
@@ -39,7 +39,8 @@
     - file: me
     - file: pausetime
     - file: remotes
-      mode: 0600
+      group: mail
+      mode: 0640
     - file: sendtimeout
   notify:   restart_nullmailer
 
