@@ -25,22 +25,22 @@
 - name:     configure nullmailer
   action:
     module: template
-    src:    '{{ item + ".j2" }}'
-    dest:   /etc/nullmailer/{{ item }}
-    mode:   0644
+    src:    '{{ item.name + ".j2" }}'
+    dest:   /etc/nullmailer/{{ item.name }}
+    mode:   '{{ item.mode |default(0644) }}
     owner:  root
     group:  root
   with_items:
-    - adminaddr
-    - defaultdomain
-    - defaulthost
-    - helohost
-    - idhost
-    - me
-    - pausetime
-    - remotes
-    - sendtimeout
-
+    - file: adminaddr
+    - file: defaultdomain
+    - file: defaulthost
+    - file: helohost
+    - file: idhost
+    - file: me
+    - file: pausetime
+    - file: remotes
+      mode: 0600
+    - file: sendtimeout
   notify:   restart_nullmailer
 
 - name: install
