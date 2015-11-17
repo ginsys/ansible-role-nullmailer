@@ -9,6 +9,7 @@
     mode:   0755
     owner:  root
     group:  root
+  become:   yes
 
 - name:     configure generic mail settings
   action:
@@ -21,6 +22,7 @@
   with_items:
     - mailname
   notify:   restart_nullmailer
+  become:   yes
 
 - name:     configure nullmailer
   action:
@@ -43,10 +45,11 @@
       mode: 0640
     - file: sendtimeout
   notify:   restart_nullmailer
+  become:   yes
 
 - name: install
   action:
     module: apt
     pkg:    nullmailer
     state:  latest
-
+  become:   yes
