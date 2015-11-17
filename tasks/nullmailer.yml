@@ -27,9 +27,9 @@
     module: template
     src:    '{{ item.name + ".j2" }}'
     dest:   /etc/nullmailer/{{ item.name }}
-    mode:   '{{ item.mode |default(0644) }}
-    owner:  root
-    group:  root
+    mode:   '{{ item.mode |default(0644) }}'
+    owner:  '{{ item.owner |default("root") }}'
+    group:  '{{ item.group |default("mail") }}'
   with_items:
     - file: adminaddr
     - file: defaultdomain
