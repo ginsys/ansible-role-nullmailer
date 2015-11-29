@@ -31,17 +31,17 @@
     owner:  '{{ item.owner |default("root") }}'
     group:  '{{ item.group |default("root") }}'
   with_items:
-    - file: adminaddr
-    - file: defaultdomain
-    - file: defaulthost
-    - file: helohost
-    - file: idhost
-    - file: me
-    - file: pausetime
-    - file: remotes
+    - name: adminaddr
+    - name: defaultdomain
+    - name: defaulthost
+    - name: helohost
+    - name: idhost
+    - name: me
+    - name: pausetime
+    - name: remotes
       group: mail
       mode: 0640
-    - file: sendtimeout
+    - name: sendtimeout
   notify:   restart_nullmailer
 
 - name: install
