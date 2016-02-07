@@ -44,7 +44,7 @@
     - name: pausetime
     - name: remotes
       group: mail
-      mode: 0640
+      mode: '0640'
     - name: sendtimeout
   notify:   restart_nullmailer
   become:       True
