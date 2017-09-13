@@ -6,7 +6,7 @@ galaxy_info:
     Homepage http://untroubled.org/nullmailer/
   company: ginsys.eu
   license: GPLv3
-  min_ansible_version: 1.9
+  min_ansible_version: 2.0
   platforms:
   #- name: EL
   #  versions:
@@ -26,4 +26,3 @@ galaxy_info:
   - system
   - email
 dependencies: []
-

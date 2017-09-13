@@ -1,0 +1,28 @@
+---
+
+- name: prepare gc cron
+  cron:
+    cron_file: nullmailer
+    user: root
+    name: MAILTO
+    env: yes
+    value: "{{ nullmailer_adminaddr }}"
+  become: yes
+
+- cron:
+    cron_file: nullmailer
+    user: root
+    name: MAILFROM
+    env: yes
+    value: "{{ ansible_hostname }}@{{ nullmailer_defaulthost }}"
+  become: yes
+
+- name: add gc cron
+  cron:
+    cron_file: nullmailer
+    user: root
+    name: "purge undeliverable"
+    minute: 22
+    hour: 2
+    job: "find /var/spool/nullmailer/queue/ -type f -mtime +1 -delete"
+  become: yes

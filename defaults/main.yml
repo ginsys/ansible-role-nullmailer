@@ -29,26 +29,26 @@ nullmailer_remotes:         []
 
 # according to nullmailer docs, me should be equal to hostname
 # but IMHO this must be fully qualified
-nullmailer_me:              '{{ ansible_fqdn }}'
+nullmailer_me:              "{{ ansible_fqdn }}"
 
 # The content of this file is appended to any host name that does not contain
 # a period (except localhost), including defaulthost and idhost.  Defaults to
 # the value of the /etc/mailname system file, if it exists, otherwise the
 # literal name defaultdomain.
-nullmailer_defaultdomain:   '{{ ansible_domain }}'
+nullmailer_defaultdomain:   "{{ ansible_domain }}"
 
 # The content of this file is appended to any address that is missing a host
 # name. Defaults to the value of the /etc/mailname system file, if it exists,
 # otherwise the literal name defaulthost.
-nullmailer_defaulthost:     '{{ ansible_fqdn }}'
+nullmailer_defaulthost:     "{{ ansible_fqdn }}"
 
 # Sets the environment variable $HELOHOST which is used by the SMTP protocol
 # module to set the parameter given to the HELO command.
-nullmailer_helohost:        '{{ nullmailer_me }}'
+nullmailer_helohost:        "{{ nullmailer_me }}"
 
 # The content of this file is used when building the message-id string for the
 # message. Defaults to the canonicalized value of defaulthost.
-nullmailer_idhost:          '{{ nullmailer_defaulthost }}'
+nullmailer_idhost:          "{{ nullmailer_defaulthost }}"
 
 # The number of seconds to pause between successive queue runs when there are
 # messages in the queue. If this is set to 0, nullmailer-send will exit
@@ -60,8 +60,6 @@ nullmailer_pausetime:       60
 # nullmailer-send will wait forever for messages to complete sending.
 nullmailer_sendtimeout:     3600
 
-
 # /etc/mailname: The fully-qualifiled host name of the computer running
 # nullmailer. Defaults to the literal name me.
-nullmailer_mailname:        '{{ nullmailer_me }}'
-
+nullmailer_mailname:        "{{ nullmailer_me }}"

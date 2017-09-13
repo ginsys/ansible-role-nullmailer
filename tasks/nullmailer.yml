@@ -2,8 +2,7 @@
 # tasks file for nullmailer
 #
 - name:     prepare config dir
-  action:
-    module: file
+  file:
     dest:   /etc/nullmailer
     state:  directory
     mode:   0755
@@ -13,8 +12,7 @@
   become_user:  '{{ nullmailer_become_user }}'
 
 - name:     configure generic mail settings
-  action:
-    module: template
+  template:
     src:    '{{ item + ".j2" }}'
     dest:   /etc/mailname
     mode:   0644
@@ -27,8 +25,7 @@
   become_user:  '{{ nullmailer_become_user }}'
 
 - name:     configure nullmailer
-  action:
-    module: template
+  template:
     src:    '{{ item.name + ".j2" }}'
     dest:   /etc/nullmailer/{{ item.name }}
     mode:   '{{ item.mode |default(0644) }}'
@@ -51,10 +48,8 @@
   become_user:  '{{ nullmailer_become_user }}'
 
 - name: install
-  action:
-    module: apt
+  apt:
     pkg:    nullmailer
     state:  latest
   become:       True
   become_user:  '{{ nullmailer_become_user }}'
-
