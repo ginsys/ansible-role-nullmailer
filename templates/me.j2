@@ -1,1 +1,1 @@
-{{ nullmailer_me }}
+{% if ansible_os_family != "Debian" %}{{ nullmailer_me }}{% endif %}
